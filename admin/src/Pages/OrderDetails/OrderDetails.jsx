@@ -12,7 +12,7 @@ const OrderDetails = () => {
     const fetchOrderDetails = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/api/orders/${orderId}`
+          `${VITE_API_BASE_URL}/api/orders/${orderId}`
         );
         setOrder(response.data);
       } catch (error) {
