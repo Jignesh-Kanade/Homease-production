@@ -38,7 +38,7 @@ const Navbar = () => {
         </a>
 
         <a
-          href="https://homease-production-qicq.vercel.app/login"
+          href="https://homease-production-qicq.vercel.app"
           className={menu === "Provider" ? "active" : ""}
           onClick={() => setMenu("Provider")}
         >
