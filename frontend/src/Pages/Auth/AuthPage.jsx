@@ -44,7 +44,7 @@ const AuthPage = () => {
       const response = await axios.post(
         `${API_BASE_URL}/auth/request-otp`,
         { email },
-        { timeout: 10000 }
+        { timeout: 30000 }
       );
       if (response.data.success) {
         alert(response.data.message || "OTP sent to your email.");
@@ -79,7 +79,7 @@ const AuthPage = () => {
       const response = await axios.post(
         `${API_BASE_URL}/auth/signup`,
         { email, password, otp },
-        { timeout: 10000 }
+        { timeout: 30000 }
       );
       if (response.data.success) {
         // Store email in localStorage for order tracking
@@ -127,7 +127,7 @@ const AuthPage = () => {
       const response = await axios.post(
         `${API_BASE_URL}/auth/login`,
         { email, password },
-        { timeout: 10000 }
+        { timeout: 30000 }
       );
       if (response.data.success) {
         // Store email in localStorage for order tracking
@@ -167,7 +167,7 @@ const AuthPage = () => {
         const response = await axios.post(
           `${API_BASE_URL}/auth/request-otp`,
           { email },
-          { timeout: 10000 }
+          { timeout: 30000 }
         );
         if (response.data.success) {
           alert("OTP sent to your email.");
@@ -198,7 +198,7 @@ const AuthPage = () => {
         const response = await axios.post(
           `${API_BASE_URL}/auth/reset-password`,
           { email, otp, newPassword },
-          { timeout: 10000 }
+          { timeout: 30000 }
         );
         if (response.data.success) {
           alert("Password reset successfully!");
