@@ -56,9 +56,9 @@ public class CorsConfig {
                             "http://localhost:5173",
                             "http://localhost:5174",
                             // Replace these with your actual Vercel URLs after deploy
-                            "https://homease-frontend.vercel.app",
-                            "https://homease-provider.vercel.app",
-                            "https://homease-admin.vercel.app"
+                            "https://homease-production-ten.vercel.app",
+                            "https://homease-production-qicq.vercel.app",
+                            "https://homease-production-ytz4-kappa.vercel.app"
                         )
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
