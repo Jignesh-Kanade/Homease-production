@@ -3,7 +3,6 @@ import "./Navbar.css";
 import { assets } from "../../assets/frontend_assets/assets";
 import { Link, useNavigate } from "react-router-dom";
 import { StoreContext } from "../context/storeContext";
-
 const Navbar = () => {
   const [menu, setMenu] = useState("Home");
   const { getTotalCartAmount, token, setToken } = useContext(StoreContext);
@@ -39,7 +38,7 @@ const Navbar = () => {
         </a>
 
         <a
-          href="http://localhost:5175"
+          href="https://homease-production-qicq.vercel.app/login"
           className={menu === "Provider" ? "active" : ""}
           onClick={() => setMenu("Provider")}
         >
