@@ -12,15 +12,15 @@ import { BsClockHistory, BsCheck2Circle, BsXCircle } from 'react-icons/bs';
 import { MdCancel, MdBuild } from 'react-icons/md';
 import { Container, Row, Col, Button, Spinner, Form, Modal, Badge } from 'react-bootstrap';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080/api';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080/api';
 
 // ── Status config ─────────────────────────────────────────────────────────────
 const STATUS_FLOW = [
-  { id: 'service_requested', label: 'Requested',   icon: <BsClockHistory />, color: '#3498db', bg: '#ebf5fb' },
-  { id: 'provider_assigned', label: 'Pro Assigned',icon: <FaUserTie />,      color: '#f39c12', bg: '#fef9e7' },
-  { id: 'out_for_service',   label: 'On The Way',  icon: <FaTruck />,        color: '#e67e22', bg: '#fef5e7' },
-  { id: 'service_started',   label: 'In Progress', icon: <MdBuild />,        color: '#16a085', bg: '#e8f8f5' },
-  { id: 'service_completed', label: 'Completed',   icon: <FaCheckCircle />,  color: '#27ae60', bg: '#eafaf1' },
+  { id: 'service_requested', label: 'Requested', icon: <BsClockHistory />, color: '#3498db', bg: '#ebf5fb' },
+  { id: 'provider_assigned', label: 'Pro Assigned', icon: <FaUserTie />, color: '#f39c12', bg: '#fef9e7' },
+  { id: 'out_for_service', label: 'On The Way', icon: <FaTruck />, color: '#e67e22', bg: '#fef5e7' },
+  { id: 'service_started', label: 'In Progress', icon: <MdBuild />, color: '#16a085', bg: '#e8f8f5' },
+  { id: 'service_completed', label: 'Completed', icon: <FaCheckCircle />, color: '#27ae60', bg: '#eafaf1' },
 ];
 
 const getStatusCfg = (id) =>
@@ -77,7 +77,7 @@ const ServiceTracker = ({ status }) => {
 // ── Star Rating component ─────────────────────────────────────────────────────
 const StarRating = ({ value, onChange }) => (
   <div className="star-rating">
-    {[1,2,3,4,5].map(star => (
+    {[1, 2, 3, 4, 5].map(star => (
       <span key={star} onClick={() => onChange(star)} className="star-btn">
         {star <= value ? <FaStar color="#f59e0b" size={28} /> : <FaRegStar color="#d1d5db" size={28} />}
       </span>
@@ -87,23 +87,23 @@ const StarRating = ({ value, onChange }) => (
 
 // ── Main Component ────────────────────────────────────────────────────────────
 const MyOrders = () => {
-  const [orders, setOrders]             = useState([]);
-  const [loading, setLoading]           = useState(true);
-  const [error, setError]               = useState(null);
+  const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [selectedOrder, setSelectedOrder] = useState(null);
-  const [userEmail, setUserEmail]       = useState('');
-  const [emailInput, setEmailInput]     = useState('');
+  const [userEmail, setUserEmail] = useState('');
+  const [emailInput, setEmailInput] = useState('');
   const [loadingEmail, setLoadingEmail] = useState(false);
-  const [showModal, setShowModal]       = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const [detailLoading, setDetailLoading] = useState(false);
-  const [activeTab, setActiveTab]       = useState('all');
+  const [activeTab, setActiveTab] = useState('all');
   // Rating state
-  const [ratingValue, setRatingValue]   = useState(0);
+  const [ratingValue, setRatingValue] = useState(0);
   const [ratingComment, setRatingComment] = useState('');
   const [submittingRating, setSubmittingRating] = useState(false);
 
   const { token } = useContext(StoreContext);
-  const navigate  = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const stored = localStorage.getItem('userEmail');
@@ -158,8 +158,8 @@ const MyOrders = () => {
 
   const getFiltered = () => {
     if (!Array.isArray(orders)) return [];
-    const active = ['service_requested','provider_assigned','out_for_service','service_started'];
-    if (activeTab === 'active')    return orders.filter(o => active.includes(o.trackingStatus));
+    const active = ['service_requested', 'provider_assigned', 'out_for_service', 'service_started'];
+    if (activeTab === 'active') return orders.filter(o => active.includes(o.trackingStatus));
     if (activeTab === 'completed') return orders.filter(o => o.trackingStatus === 'service_completed');
     if (activeTab === 'cancelled') return orders.filter(o => o.trackingStatus === 'cancelled');
     return orders;
@@ -177,16 +177,16 @@ const MyOrders = () => {
       <h2>Order #${selectedOrder.orderId} <small style="font-size:14px;color:#888">
         ${formatDate(selectedOrder.createdAt, true)}</small></h2>
       <h3>Customer</h3>
-      <div class="row"><span>Name</span><span>${selectedOrder.firstName||''} ${selectedOrder.lastName||''}</span></div>
-      <div class="row"><span>Email</span><span>${selectedOrder.email||''}</span></div>
-      <div class="row"><span>Phone</span><span>${selectedOrder.phone||''}</span></div>
+      <div class="row"><span>Name</span><span>${selectedOrder.firstName || ''} ${selectedOrder.lastName || ''}</span></div>
+      <div class="row"><span>Email</span><span>${selectedOrder.email || ''}</span></div>
+      <div class="row"><span>Phone</span><span>${selectedOrder.phone || ''}</span></div>
       <h3>Service</h3>
-      <div class="row"><span>Status</span><span>${(selectedOrder.trackingStatus||'').replace(/_/g,' ').toUpperCase()}</span></div>
-      <div class="row"><span>Service Date</span><span>${selectedOrder.serviceDate||'N/A'}</span></div>
+      <div class="row"><span>Status</span><span>${(selectedOrder.trackingStatus || '').replace(/_/g, ' ').toUpperCase()}</span></div>
+      <div class="row"><span>Service Date</span><span>${selectedOrder.serviceDate || 'N/A'}</span></div>
       <h3>Payment</h3>
       <div class="row"><span>Method</span><span>Razorpay</span></div>
-      <div class="row"><span>Payment ID</span><span>${selectedOrder.paymentId||'N/A'}</span></div>
-      <div class="row total"><span>Total</span><span>₹${selectedOrder.amount||0}</span></div>
+      <div class="row"><span>Payment ID</span><span>${selectedOrder.paymentId || 'N/A'}</span></div>
+      <div class="row total"><span>Total</span><span>₹${selectedOrder.amount || 0}</span></div>
       <p style="margin-top:30px;color:#888;font-size:12px">Thank you for choosing Homease!</p>
       <script>window.onload=()=>window.print()</script></body></html>`);
     w.document.close();
@@ -208,7 +208,7 @@ const MyOrders = () => {
 
         {/* Email form */}
         {!userEmail && (
-          <motion.div className="email-form-card" initial={{ opacity:0,y:-20 }} animate={{ opacity:1,y:0 }}>
+          <motion.div className="email-form-card" initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }}>
             <h3 className="mb-2">Track Your Service Bookings</h3>
             <p className="text-muted mb-4">Enter your email to view all your orders.</p>
             <Form onSubmit={handleEmailSubmit}>
@@ -218,8 +218,8 @@ const MyOrders = () => {
               </Form.Group>
               <Button type="submit" className="submit-btn" disabled={loadingEmail}>
                 {loadingEmail
-                  ? <><Spinner as="span" animation="border" size="sm" className="me-2"/>Searching…</>
-                  : <><FaSearch className="me-2"/>Find My Orders</>}
+                  ? <><Spinner as="span" animation="border" size="sm" className="me-2" />Searching…</>
+                  : <><FaSearch className="me-2" />Find My Orders</>}
               </Button>
             </Form>
           </motion.div>
@@ -233,19 +233,19 @@ const MyOrders = () => {
             <div className="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
               <h3 className="mb-0">My Service Bookings</h3>
               <div className="tab-pills">
-                {['all','active','completed','cancelled'].map(tab => (
+                {['all', 'active', 'completed', 'cancelled'].map(tab => (
                   <button key={tab}
-                    className={`tab-pill ${activeTab===tab?'tab-pill-active':''}`}
+                    className={`tab-pill ${activeTab === tab ? 'tab-pill-active' : ''}`}
                     onClick={() => setActiveTab(tab)}>
-                    {tab.charAt(0).toUpperCase()+tab.slice(1)}
+                    {tab.charAt(0).toUpperCase() + tab.slice(1)}
                   </button>
                 ))}
               </div>
             </div>
 
             {getFiltered().map(order => (
-              <motion.div key={order.id||order.orderId}
-                className="order-card" whileHover={{ y:-4 }}>
+              <motion.div key={order.id || order.orderId}
+                className="order-card" whileHover={{ y: -4 }}>
                 <div className="order-card-header">
                   <div>
                     <div className="order-card-id">Order #{order.orderId}</div>
@@ -255,8 +255,10 @@ const MyOrders = () => {
                     )}
                   </div>
                   <span className="status-badge"
-                    style={{ backgroundColor: getStatusCfg(order.trackingStatus).bg,
-                      color: getStatusCfg(order.trackingStatus).color }}>
+                    style={{
+                      backgroundColor: getStatusCfg(order.trackingStatus).bg,
+                      color: getStatusCfg(order.trackingStatus).color
+                    }}>
                     {getStatusCfg(order.trackingStatus).label}
                   </span>
                 </div>
@@ -265,16 +267,16 @@ const MyOrders = () => {
                   <ServiceTracker status={order.trackingStatus} />
 
                   {/* START OTP — shown when waiting for / found provider */}
-                  {['provider_assigned','out_for_service'].includes(order.trackingStatus)
+                  {['provider_assigned', 'out_for_service'].includes(order.trackingStatus)
                     && order.otpServiceStart && (
-                    <div className="otp-banner otp-start">
-                      <div>
-                        <strong>🔐 Start OTP</strong>
-                        <p>Share this with your provider when they arrive to begin the service.</p>
+                      <div className="otp-banner otp-start">
+                        <div>
+                          <strong>🔐 Start OTP</strong>
+                          <p>Share this with your provider when they arrive to begin the service.</p>
+                        </div>
+                        <span className="otp-code">{order.otpServiceStart}</span>
                       </div>
-                      <span className="otp-code">{order.otpServiceStart}</span>
-                    </div>
-                  )}
+                    )}
 
                   {/* END OTP — shown once service has started */}
                   {order.trackingStatus === 'service_started' && order.otpServiceEnd && (
@@ -290,7 +292,7 @@ const MyOrders = () => {
                   <div className="order-card-footer">
                     <div className="order-card-amount">₹{order.amount || 0}</div>
                     <button className="view-details-btn" onClick={() => openDetails(order)}>
-                      <FaEye className="me-2"/>View Details
+                      <FaEye className="me-2" />View Details
                     </button>
                   </div>
                 </div>
@@ -311,7 +313,7 @@ const MyOrders = () => {
           </Modal.Header>
           <Modal.Body>
             {detailLoading ? (
-              <div className="text-center p-5"><Spinner animation="border"/><p className="mt-3">Loading…</p></div>
+              <div className="text-center p-5"><Spinner animation="border" /><p className="mt-3">Loading…</p></div>
             ) : selectedOrder && (
               <>
                 {/* Tracker */}
@@ -320,36 +322,36 @@ const MyOrders = () => {
                   <ServiceTracker status={selectedOrder.trackingStatus} />
 
                   {/* Start OTP in modal */}
-                  {['provider_assigned','out_for_service'].includes(selectedOrder.trackingStatus)
+                  {['provider_assigned', 'out_for_service'].includes(selectedOrder.trackingStatus)
                     && selectedOrder.otpServiceStart && (
-                    <div className="otp-banner otp-start mt-3">
-                      <div>
-                        <strong>🔐 Start OTP</strong>
-                        <p>Share with provider on arrival to begin service.</p>
+                      <div className="otp-banner otp-start mt-3">
+                        <div>
+                          <strong>🔐 Start OTP</strong>
+                          <p>Share with provider on arrival to begin service.</p>
+                        </div>
+                        <span className="otp-code">{selectedOrder.otpServiceStart}</span>
                       </div>
-                      <span className="otp-code">{selectedOrder.otpServiceStart}</span>
-                    </div>
-                  )}
+                    )}
 
                   {/* End OTP in modal */}
                   {selectedOrder.trackingStatus === 'service_started'
                     && selectedOrder.otpServiceEnd && (
-                    <div className="otp-banner otp-end mt-3">
-                      <div>
-                        <strong>✅ End OTP</strong>
-                        <p>Share with provider only after all work is done.</p>
+                      <div className="otp-banner otp-end mt-3">
+                        <div>
+                          <strong>✅ End OTP</strong>
+                          <p>Share with provider only after all work is done.</p>
+                        </div>
+                        <span className="otp-code">{selectedOrder.otpServiceEnd}</span>
                       </div>
-                      <span className="otp-code">{selectedOrder.otpServiceEnd}</span>
-                    </div>
-                  )}
+                    )}
                 </div>
 
                 {/* Provider info */}
                 {selectedOrder.provider && (
                   <div className="modal-section provider-modal-section">
-                    <h5 className="modal-sec-title"><FaUserTie className="me-2"/>Your Provider</h5>
+                    <h5 className="modal-sec-title"><FaUserTie className="me-2" />Your Provider</h5>
                     <div className="info-grid">
-                      <InfoRow label="Name"     value={selectedOrder.provider.name} />
+                      <InfoRow label="Name" value={selectedOrder.provider.name} />
                       <InfoRow label="Category" value={selectedOrder.provider.category} />
                       {selectedOrder.provider.phone && (
                         <InfoRow label="Phone" value={
@@ -369,11 +371,11 @@ const MyOrders = () => {
                 <div className="modal-section">
                   <h5 className="modal-sec-title">👤 Customer Information</h5>
                   <div className="info-grid">
-                    <InfoRow label="Name"    value={`${selectedOrder.firstName||''} ${selectedOrder.lastName||''}`} />
-                    <InfoRow label="Email"   value={selectedOrder.email} />
-                    <InfoRow label="Phone"   value={selectedOrder.phone} />
+                    <InfoRow label="Name" value={`${selectedOrder.firstName || ''} ${selectedOrder.lastName || ''}`} />
+                    <InfoRow label="Email" value={selectedOrder.email} />
+                    <InfoRow label="Phone" value={selectedOrder.phone} />
                     <InfoRow label="Address" value={[selectedOrder.street, selectedOrder.city,
-                      selectedOrder.state, selectedOrder.pincode].filter(Boolean).join(', ')} />
+                    selectedOrder.state, selectedOrder.pincode].filter(Boolean).join(', ')} />
                     {selectedOrder.serviceDate && (
                       <InfoRow label="Service Date" value={formatDate(selectedOrder.serviceDate)} />
                     )}
@@ -411,32 +413,32 @@ const MyOrders = () => {
                       <InfoRow label="Payment ID" value={selectedOrder.paymentId} mono />
                     )}
                     <InfoRow label="Status" value={<Badge bg="success">PAID</Badge>} />
-                    <InfoRow label="Total"  value={`₹${selectedOrder.amount || 0}`} />
+                    <InfoRow label="Total" value={`₹${selectedOrder.amount || 0}`} />
                   </div>
                 </div>
 
                 {/* ── Rating section (only after completed, not yet rated) ── */}
                 {selectedOrder.trackingStatus === 'service_completed'
                   && !selectedOrder.ratingSubmitted && (
-                  <div className="modal-section rating-section">
-                    <h5 className="modal-sec-title">⭐ Rate Your Provider</h5>
-                    <p className="rating-subtitle">
-                      How was the service by <strong>{selectedOrder.provider?.name || 'your provider'}</strong>?
-                    </p>
-                    <StarRating value={ratingValue} onChange={setRatingValue} />
-                    <textarea
-                      className="rating-comment"
-                      placeholder="Leave a comment (optional)…"
-                      value={ratingComment}
-                      onChange={e => setRatingComment(e.target.value)}
-                      rows={3}
-                    />
-                    <Button className="submit-rating-btn" onClick={submitRating}
-                      disabled={submittingRating || ratingValue === 0}>
-                      {submittingRating ? 'Submitting…' : '⭐ Submit Rating'}
-                    </Button>
-                  </div>
-                )}
+                    <div className="modal-section rating-section">
+                      <h5 className="modal-sec-title">⭐ Rate Your Provider</h5>
+                      <p className="rating-subtitle">
+                        How was the service by <strong>{selectedOrder.provider?.name || 'your provider'}</strong>?
+                      </p>
+                      <StarRating value={ratingValue} onChange={setRatingValue} />
+                      <textarea
+                        className="rating-comment"
+                        placeholder="Leave a comment (optional)…"
+                        value={ratingComment}
+                        onChange={e => setRatingComment(e.target.value)}
+                        rows={3}
+                      />
+                      <Button className="submit-rating-btn" onClick={submitRating}
+                        disabled={submittingRating || ratingValue === 0}>
+                        {submittingRating ? 'Submitting…' : '⭐ Submit Rating'}
+                      </Button>
+                    </div>
+                  )}
 
                 {/* Already rated */}
                 {selectedOrder.ratingSubmitted && (
@@ -455,7 +457,7 @@ const MyOrders = () => {
             <Button variant="secondary" onClick={() => setShowModal(false)}>Close</Button>
             {!detailLoading && (
               <Button variant="primary" onClick={printReceipt}>
-                <FaPrint className="me-2"/>Print Receipt
+                <FaPrint className="me-2" />Print Receipt
               </Button>
             )}
           </Modal.Footer>
@@ -469,21 +471,21 @@ const MyOrders = () => {
 const InfoRow = ({ label, value, mono }) => (
   <div className="info-row">
     <span className="info-label">{label}</span>
-    <span className={`info-value${mono?' mono':''}`}>{value || 'N/A'}</span>
+    <span className={`info-value${mono ? ' mono' : ''}`}>{value || 'N/A'}</span>
   </div>
 );
 
 const NoOrders = () => {
   const navigate = useNavigate();
   return (
-    <motion.div className="no-orders" initial={{ opacity:0,y:30 }} animate={{ opacity:1,y:0 }}>
+    <motion.div className="no-orders" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}>
       <div className="no-orders-icon-wrap">
         <div className="icon-circle"><FaTools /></div>
       </div>
       <h3>No Bookings Yet</h3>
       <p>You haven't booked any services. Browse our services and place your first booking!</p>
       <Button className="shop-now-btn" onClick={() => navigate('/')}>
-        Browse Services <FaShoppingBag className="ms-2"/>
+        Browse Services <FaShoppingBag className="ms-2" />
       </Button>
     </motion.div>
   );
