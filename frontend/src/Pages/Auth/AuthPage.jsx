@@ -611,6 +611,9 @@ const AuthPage = () => {
       ) : (
         /* ── Login ── */
         <>
+        <p>Use this login Credentials</p>
+        <span>Email: jigneshkanade93@gmail.com</span>
+        <span>Password: jk@123</span>
           <input type="email" placeholder="Email" value={email}
             onChange={(e) => setEmail(e.target.value)} required />
           <input type="password" placeholder="Password" value={password}
