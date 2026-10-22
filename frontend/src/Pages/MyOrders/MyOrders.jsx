@@ -114,7 +114,7 @@ const MyOrders = () => {
   const fetchOrders = async (email) => {
     try {
       setLoading(true); setError(null);
-      const res = await axios.get(`${API_BASE_URL}/orders/user/${encodeURIComponent(email)}`);
+      const res = await axios.get(`${API_BASE_URL}/api/orders/user/${encodeURIComponent(email)}`);
       setOrders(res.data);
     } catch { setError('Failed to load orders. Please try again.'); }
     finally { setLoading(false); }
