@@ -311,7 +311,7 @@ const PlaceOrder = () => {
             );
 
             clearCart();
-            navigate("/myorders");
+            navigate("/my-orders");
           } catch (err) {
             console.error("Error saving order:", err);
             alert(
