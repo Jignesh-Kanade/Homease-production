@@ -398,14 +398,17 @@
   }
 }
 
+
 /* =================================
-   MOBILE
+   MOBILE NAVBAR
 ================================= */
 
 @media (max-width: 750px) {
   .navbar {
+    position: relative;
     padding: 12px 4%;
-    gap: 12px;
+    gap: 10px;
+    flex-wrap: wrap;
   }
 
   .navbar .logo {
@@ -413,12 +416,45 @@
     max-width: 30%;
   }
 
+  /* Keep navigation visible */
   .navbar-menu {
-    display: none;
+    display: flex;
+    order: 3;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 0;
+
+    width: 100%;
+    flex-basis: 100%;
+
+    padding: 8px 0;
+    margin: 0;
+
+    font-size: 15px;
+    background-color: #ffffff;
+  }
+
+  .navbar-menu li {
+    width: 100%;
+    white-space: normal;
+  }
+
+  .navbar-menu a {
+    display: block;
+    padding: 12px 10px;
+    border-bottom: 1px solid #eeeeee;
+  }
+
+  .navbar-menu a:hover,
+  .navbar-menu .active {
+    border-bottom: 2px solid #1a237e;
   }
 
   .navbar-right {
-    gap: 12px;
+    margin-left: auto;
+    gap: 10px;
+    flex-shrink: 1;
   }
 
   .navbar-right img {
@@ -426,12 +462,12 @@
   }
 
   .navbar-right .navbar-search-icon img {
-    width: 30px;
+    width: 28px;
   }
 
   .navbar button {
-    padding: 9px 14px;
-    font-size: 13px;
+    padding: 8px 12px;
+    font-size: 12px;
   }
 
   .nav-profile-dropdown {
@@ -445,7 +481,7 @@
 
 @media (max-width: 480px) {
   .navbar {
-    padding: 12px 3%;
+    padding: 10px 3%;
     gap: 8px;
   }
 
@@ -455,7 +491,7 @@
   }
 
   .navbar-right {
-    gap: 8px;
+    gap: 7px;
   }
 
   .navbar-right img {
@@ -463,12 +499,12 @@
   }
 
   .navbar-right .navbar-search-icon img {
-    width: 26px;
+    width: 25px;
   }
 
   .navbar button {
-    padding: 8px 11px;
-    font-size: 12px;
+    padding: 7px 9px;
+    font-size: 11px;
   }
 }
 
@@ -478,7 +514,7 @@
 
 @media (max-width: 360px) {
   .navbar {
-    padding: 10px 3%;
+    padding: 9px 3%;
     gap: 5px;
   }
 
@@ -487,15 +523,15 @@
   }
 
   .navbar-right {
-    gap: 6px;
+    gap: 5px;
   }
 
   .navbar-right .navbar-search-icon img {
-    width: 23px;
+    width: 22px;
   }
 
   .navbar button {
-    padding: 7px 9px;
-    font-size: 11px;
+    padding: 6px 8px;
+    font-size: 10px;
   }
 }
