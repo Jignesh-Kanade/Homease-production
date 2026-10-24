@@ -1,4 +1,4 @@
-.place-order {
+/* .place-order {
   display: flex;
   align-items: start;
   justify-content: space-between;
@@ -79,7 +79,6 @@
   background: linear-gradient(90deg, #ff4500, #ff6347);
 }
 
-/* Responsive adjustments */
 @media (max-width: 750px) {
   .place-order {
     flex-direction: column;
@@ -89,5 +88,306 @@
   .place-order-left,
   .place-order-right {
     max-width: 100%;
+  }
+} */
+
+
+
+
+
+
+
+/* =================================
+   PLACE ORDER
+================================= */
+
+.place-order {
+  width: 100%;
+  max-width: 1200px;
+
+  min-width: 0;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 40px;
+
+  margin: 60px auto;
+
+  padding: 25px;
+
+  background: #ffffff;
+
+  border-radius: 12px;
+
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Left section */
+
+.place-order-left {
+  width: 100%;
+  max-width: 500px;
+
+  min-width: 0;
+}
+
+.place-order-left .title {
+  font-size: 28px;
+
+  font-weight: bold;
+
+  line-height: 1.3;
+
+  margin-bottom: 20px;
+}
+
+/* Form inputs */
+
+.place-order-left input {
+  display: block;
+
+  width: 100%;
+  max-width: 100%;
+
+  min-width: 0;
+  min-height: 45px;
+
+  margin-bottom: 15px;
+
+  padding: 12px;
+
+  border: 1px solid #ccc;
+  border-radius: 6px;
+
+  font-size: 16px;
+
+  outline-color: tomato;
+}
+
+/* Multiple fields */
+
+.place-order-left .multi-field {
+  display: flex;
+
+  gap: 10px;
+
+  min-width: 0;
+}
+
+.place-order-left .multi-field input {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Right section */
+
+.place-order-right {
+  width: 100%;
+  max-width: 500px;
+
+  min-width: 0;
+
+  padding: 20px;
+
+  background: #fafafa;
+
+  border-radius: 12px;
+
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Cart total */
+
+.cart-total {
+  display: flex;
+  flex-direction: column;
+
+  gap: 20px;
+
+  min-width: 0;
+}
+
+.cart-total-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 15px;
+
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.cart-total-details > * {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.cart-total hr {
+  margin: 10px 0;
+}
+
+/* Button */
+
+.cart-total button {
+  width: 100%;
+
+  min-height: 44px;
+
+  border: none;
+
+  padding: 12px;
+
+  border-radius: 6px;
+
+  color: white;
+
+  background: linear-gradient(90deg, #ff6347, #ff4500);
+
+  font-size: 16px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.cart-total button:hover {
+  background: linear-gradient(90deg, #ff4500, #ff6347);
+}
+
+/* =================================
+   TABLET
+================================= */
+
+@media (max-width: 900px) {
+  .place-order {
+    gap: 25px;
+
+    margin: 40px auto;
+
+    padding: 20px;
+  }
+
+  .place-order-left,
+  .place-order-right {
+    max-width: 50%;
+  }
+
+  .place-order-left .title {
+    font-size: 25px;
+  }
+}
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 750px) {
+  .place-order {
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 25px;
+
+    margin: 25px auto;
+
+    padding: 15px;
+
+    border-radius: 8px;
+  }
+
+  .place-order-left,
+  .place-order-right {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .place-order-left .title {
+    font-size: 24px;
+  }
+
+  .place-order-left input {
+    font-size: 16px;
+    padding: 12px;
+  }
+
+  .place-order-right {
+    padding: 18px;
+  }
+}
+
+/* =================================
+   SMALL MOBILE
+================================= */
+
+@media (max-width: 480px) {
+  .place-order {
+    margin: 20px auto;
+
+    padding: 12px;
+
+    gap: 20px;
+  }
+
+  .place-order-left .title {
+    font-size: 22px;
+
+    margin-bottom: 15px;
+  }
+
+  .place-order-left input {
+    min-height: 44px;
+
+    padding: 11px;
+
+    font-size: 15px;
+  }
+
+  .place-order-left .multi-field {
+    gap: 8px;
+  }
+
+  .place-order-right {
+    padding: 15px;
+  }
+
+  .place-order-right .cart-total {
+    gap: 15px;
+  }
+
+  .place-order-right .cart-total-details {
+    font-size: 13px;
+  }
+
+  .place-order-right .cart-total button {
+    font-size: 14px;
+  }
+}
+
+/* =================================
+   EXTRA SMALL MOBILE
+================================= */
+
+@media (max-width: 360px) {
+  .place-order {
+    padding: 10px;
+  }
+
+  .place-order-left .title {
+    font-size: 20px;
+  }
+
+  .place-order-left .multi-field {
+    flex-direction: column;
+
+    gap: 0;
+  }
+
+  .place-order-right {
+    padding: 12px;
   }
 }

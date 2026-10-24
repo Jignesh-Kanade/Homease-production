@@ -1,4 +1,4 @@
-.notification {
+/* .notification {
   position: fixed;
   top: 20px;
   right: 20px;
@@ -24,5 +24,93 @@
   100% {
     opacity: 0;
     transform: translateY(-10px);
+  }
+} */
+
+
+
+
+
+/* =================================
+   HOME NOTIFICATION
+================================= */
+
+.notification {
+  position: fixed;
+
+  top: 20px;
+  right: 20px;
+
+  max-width: calc(100vw - 40px);
+
+  width: max-content;
+
+  background-color: #4caf50;
+  color: white;
+
+  padding: 15px 20px;
+
+  border-radius: 8px;
+
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+  z-index: 1000;
+
+  overflow-wrap: break-word;
+
+  animation: fadeInOut 5s ease-in-out;
+}
+
+/* Notification animation */
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  10%,
+  90% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 750px) {
+  .notification {
+    top: 12px;
+    right: 12px;
+
+    max-width: calc(100vw - 24px);
+
+    padding: 12px 15px;
+
+    font-size: 14px;
+  }
+}
+
+/* =================================
+   SMALL MOBILE
+================================= */
+
+@media (max-width: 480px) {
+  .notification {
+    top: 10px;
+    right: 10px;
+
+    max-width: calc(100vw - 20px);
+
+    padding: 10px 12px;
+
+    font-size: 13px;
   }
 }

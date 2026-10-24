@@ -1,4 +1,4 @@
-.header {
+/* .header {
   height: 36vw;
   margin: 35px auto;
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url("https://media.istockphoto.com/id/1417833187/photo/professional-cleaner-vacuuming-a-carpet.jpg?s=612x612&w=0&k=20&c=5h8NBR190d46Ni4MclqJ7Zf9ZOtf3TM3gPRJaHUdMjk=") no-repeat center;
@@ -11,7 +11,7 @@
 .header {
   height: 100vh;
   margin: 0 auto;
-  /* background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url(https://safaiwale.in/wp-content/uploads/2024/11/House-cleaning.webp) no-repeat center; */
+
   border-radius: 0px;
   background-size: cover;
   position: relative;
@@ -138,5 +138,332 @@
     padding: 2vw 4vw;
     width: 100%;
     text-align: center;
+  }
+} */
+
+
+
+
+
+
+
+/* =================================
+   HEADER
+================================= */
+
+.header {
+  width: 100%;
+  max-width: 100%;
+
+  height: 36vw;
+  min-height: 450px;
+
+  margin: 25px auto;
+
+  background:
+    linear-gradient(
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.3)
+    ),
+    url("https://media.istockphoto.com/id/1417833187/photo/professional-cleaner-vacuuming-a-carpet.jpg?s=612x612&w=0&k=20&c=5h8NBR190d46Ni4MclqJ7Zf9ZOtf3TM3gPRJaHUdMjk=")
+    no-repeat center;
+
+  border-radius: 12px;
+
+  background-size: cover;
+  background-position: center;
+
+  position: relative;
+
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Header content */
+
+.header-contents {
+  position: absolute;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  gap: 1.2vw;
+
+  max-width: 55%;
+
+  bottom: 12%;
+  left: 6%;
+
+  animation: fadeIn 2s;
+}
+
+/* Heading */
+
+.header-contents h2 {
+  font-weight: 700;
+
+  color: white;
+
+  font-size: clamp(24px, 3.5vw, 48px);
+
+  margin: 0 0 0.5vw;
+
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+
+  line-height: 1.2;
+
+  overflow-wrap: break-word;
+}
+
+/* Divider */
+
+.header-divider {
+  width: 80px;
+  height: 4px;
+
+  background-color: #1a237e;
+
+  margin: 0.5vw 0 1vw;
+
+  border-radius: 2px;
+}
+
+/* Description */
+
+.header-contents p {
+  color: white;
+
+  font-size: clamp(14px, 1.1vw, 18px);
+
+  font-weight: 400;
+
+  line-height: 1.6;
+
+  margin: 0;
+
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+
+  overflow-wrap: break-word;
+}
+
+/* Buttons */
+
+.header-buttons {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 1vw;
+
+  margin-top: 1vw;
+}
+
+.header-contents .primary-btn,
+.header-contents .secondary-btn {
+  min-height: 44px;
+
+  padding: 1vw 2vw;
+
+  border-radius: 6px;
+
+  font-size: clamp(14px, 1vw, 16px);
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+}
+
+/* Primary button */
+
+.header-contents .primary-btn {
+  background: #1a237e;
+
+  color: white;
+
+  border: none;
+
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Secondary button */
+
+.header-contents .secondary-btn {
+  background: transparent;
+
+  color: white;
+
+  border: 2px solid white;
+}
+
+/* Hover */
+
+.header-contents .primary-btn:hover {
+  background-color: #303f9f;
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.header-contents .secondary-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+
+  transform: translateY(-2px);
+}
+
+/* Animation */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =================================
+   TABLET
+================================= */
+
+@media (max-width: 1050px) {
+  .header {
+    height: 50vw;
+    min-height: 400px;
+  }
+
+  .header-contents {
+    max-width: 65%;
+  }
+
+  .header-contents h2 {
+    font-size: clamp(24px, 4vw, 40px);
+  }
+}
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 750px) {
+  .header {
+    height: auto;
+
+    min-height: 400px;
+
+    margin: 15px auto;
+
+    border-radius: 10px;
+  }
+
+  .header-contents {
+    max-width: 90%;
+
+    left: 5%;
+    right: 5%;
+
+    bottom: 8%;
+
+    gap: 12px;
+  }
+
+  .header-contents h2 {
+    font-size: clamp(22px, 5vw, 32px);
+  }
+
+  .header-contents p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .header-divider {
+    width: 60px;
+  }
+
+  .header-buttons {
+    flex-direction: column;
+
+    gap: 10px;
+
+    width: 100%;
+  }
+
+  .header-contents .primary-btn,
+  .header-contents .secondary-btn {
+    width: 100%;
+
+    min-height: 44px;
+
+    padding: 12px 15px;
+
+    font-size: 14px;
+
+    text-align: center;
+  }
+}
+
+/* =================================
+   SMALL MOBILE
+================================= */
+
+@media (max-width: 480px) {
+  .header {
+    min-height: 360px;
+
+    margin: 12px auto;
+  }
+
+  .header-contents {
+    max-width: 92%;
+
+    left: 4%;
+    right: 4%;
+
+    bottom: 6%;
+
+    gap: 10px;
+  }
+
+  .header-contents h2 {
+    font-size: 23px;
+    line-height: 1.25;
+  }
+
+  .header-contents p {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .header-buttons {
+    gap: 8px;
+    margin-top: 5px;
+  }
+
+  .header-contents .primary-btn,
+  .header-contents .secondary-btn {
+    padding: 11px 12px;
+    font-size: 13px;
+  }
+}
+
+/* =================================
+   EXTRA SMALL MOBILE
+================================= */
+
+@media (max-width: 360px) {
+  .header {
+    min-height: 340px;
+  }
+
+  .header-contents h2 {
+    font-size: 21px;
+  }
+
+  .header-contents p {
+    font-size: 12px;
   }
 }
